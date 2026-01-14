@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Grade Calculator</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.calculator {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  font-size: 16px;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background: #45a049;
+}
+.result {
+  margin-top: 15px;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="calculator">
+  <h2>Student Grade Calculator</h2>
+
+  <input type="number" id="sub1" placeholder="Subject 1 Marks">
+  <input type="number" id="sub2" placeholder="Subject 2 Marks">
+  <input type="number" id="sub3" placeholder="Subject 3 Marks">
+  <input type="number" id="sub4" placeholder="Subject 4 Marks">
+  <input type="number" id="sub5" placeholder="Subject 5 Marks">
+
+  <button id="calculateBtn">Calculate</button>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+document.getElementById("calculateBtn").addEventListener("click", function() {
+    let s1 = Number(document.getElementById("sub1").value);
+    let s2 = Number(document.getElementById("sub2").value);
+    let s3 = Number(document.getElementById("sub3").value);
+    let s4 = Number(document.getElementById("sub4").value);
+    let s5 = Number(document.getElementById("sub5").value);
+
+    // Check if all inputs are filled
+    if([s1,s2,s3,s4,s5].some(isNaN)) {
+        document.getElementById("result").innerHTML = "Please enter all marks!";
+        return;
+    }
+
+    let total = s1 + s2 + s3 + s4 + s5;
+    let percent = (total / 500) * 100;
+
+    let grade = "";
+    if (percent >= 90) grade = "A+";
+    else if (percent >= 80) grade = "A";
+    else if (percent >= 70) grade = "B";
+    else if (percent >= 60) grade = "C";
+    else grade = "Fail";
+
+    document.getElementById("result").innerHTML =
+        "Total Marks: " + total + "<br>" +
+        "Percentage: " + percent.toFixed(2) + "%<br>" +
+        "Grade: " + grade;
+});
+</script>
+
+</body>
+</html>
